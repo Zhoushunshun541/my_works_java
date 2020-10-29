@@ -10,6 +10,7 @@
   "properties": [
     {
       "sourceType": "com.idiotic.common.utils.JwtToken",
+      "defaultValue": "idiotic",
       "name": "jwt.config.key",
       "type": "java.lang.String"
     },

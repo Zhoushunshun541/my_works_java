@@ -1,4 +1,4 @@
-package com.idiotic.domain;
+package com.idiotic.domain.system;
 
 import javax.persistence.*;
 import java.util.Objects;

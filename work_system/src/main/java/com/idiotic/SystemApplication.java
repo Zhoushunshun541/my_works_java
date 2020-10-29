@@ -13,7 +13,7 @@ import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 // 配置springboot扫描
 @SpringBootApplication(scanBasePackages = "com.idiotic")
 //2 配置jpa注解扫描
-@EntityScan(value = "com.idiotic.domain")
+@EntityScan(value = "com.idiotic.domain.system")
 public class SystemApplication {
     public static void main(String[] args) {
         SpringApplication.run(SystemApplication.class);
@@ -26,7 +26,6 @@ public class SystemApplication {
     public JwtToken jwtToken(){
         return new JwtToken();
     }
-
     //  解决no session
     @Bean
     public OpenEntityManagerInViewFilter openEntityManagerInViewFilter(){

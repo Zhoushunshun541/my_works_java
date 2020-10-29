@@ -2,7 +2,7 @@ server:
   port: 8060
 spring:
   application:
-    name: work_sign_up
+    name: work_system
     #2.数据库连接池
   datasource:
     driver-class-name: com.mysql.jdbc.Driver

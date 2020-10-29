@@ -1,7 +1,7 @@
 package com.idiotic.service;
 
 import com.idiotic.dao.UserDao;
-import com.idiotic.domain.User;
+import com.idiotic.domain.system.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
