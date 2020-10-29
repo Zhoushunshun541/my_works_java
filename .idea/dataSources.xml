@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="阿里云" uuid="76572f14-d4a3-4bea-87d3-bb746b21da92">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://139.196.33.88:3306/my_works</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="本地数据库" uuid="c7af0391-09d2-43d6-be8f-aa377a1588bd">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/my_works</jdbc-url>
+    </data-source>
+  </component>
+</project>

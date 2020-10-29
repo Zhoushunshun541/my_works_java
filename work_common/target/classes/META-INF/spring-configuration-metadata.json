@@ -1,0 +1,22 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.idiotic.common.utils.JwtToken",
+      "name": "jwt.config",
+      "type": "com.idiotic.common.utils.JwtToken"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.idiotic.common.utils.JwtToken",
+      "name": "jwt.config.key",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.idiotic.common.utils.JwtToken",
+      "name": "jwt.config.ttl",
+      "type": "java.lang.Integer"
+    }
+  ]
+}
