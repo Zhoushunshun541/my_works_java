@@ -1,0 +1,15 @@
+server:
+  port: 8060
+spring:
+  application:
+    name: work_sign_up
+    #2.数据库连接池
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://139.196.33.88/:3306/my_works?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: 521541
+jwt:
+  config:
+    key: idiotic
+    ttl: 36000000

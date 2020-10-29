@@ -32,7 +32,6 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String token = request.getHeader("token");
-        System.out.println(token);
         if (!StringUtils.isEmpty(token)){
             Claims claims = jwtToken.parseToken(token);
             if (claims != null){
@@ -40,7 +39,7 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
                 return true;
             }
         }
-        throw new CommonExpection(ResultCode.UNAUTHENTICATED);
+        return false;
     }
 
     /**
