@@ -22,6 +22,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private JwtToken jwtToken;
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public Result userLogin(String username,String password){
@@ -29,7 +31,6 @@ public class UserController {
         if (user != null){
             Map<String,Object> userMap = new HashMap<>();
             userMap.put("userData",user);
-            JwtToken jwtToken = new JwtToken();
             String token = jwtToken.createToken(user.getId().toString(), user.getName(), userMap);
             userMap.put("token",token);
             return new Result(ResultCode.SUCCESS,userMap);
