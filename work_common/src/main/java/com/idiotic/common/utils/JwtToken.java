@@ -32,7 +32,6 @@ public class JwtToken {
      */
     public String createToken(String id, String name, Map<String, Object> map) {
         // 设置失效时间
-        System.out.println(ttl);
         Long now = System.currentTimeMillis(); //当前毫秒数
         Long exp = now + ttl;
         JwtBuilder jwt = Jwts.builder().setId(id).setSubject(name).signWith(SignatureAlgorithm.HS256, key);

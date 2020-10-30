@@ -6,6 +6,7 @@ import com.idiotic.common.utils.Result;
 import com.idiotic.common.utils.ResultCode;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,11 +32,15 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
+        response.setHeader("Access-control-Allow-Origin", request.getHeader("Origin"));
+        response.setHeader("Access-Control-Allow-Methods", request.getMethod());
+        response.setHeader("Access-Control-Allow-Headers", request.getHeader("Access-Control-Request-Headers"));
+        response.setStatus(HttpStatus.OK.value());
         String token = request.getHeader("token");
         if (!StringUtils.isEmpty(token)){
             Claims claims = jwtToken.parseToken(token);
             if (claims != null){
-                System.out.println(claims.get("id"));
                 return true;
             }
         }

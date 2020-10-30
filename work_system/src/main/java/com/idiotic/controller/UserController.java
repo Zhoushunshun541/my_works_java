@@ -4,9 +4,12 @@ package com.idiotic.controller;
 import com.idiotic.common.utils.JwtToken;
 import com.idiotic.common.utils.Result;
 import com.idiotic.common.utils.ResultCode;
+import com.idiotic.domain.system.MyInfo;
 import com.idiotic.domain.system.User;
+import com.idiotic.service.MyInfoService;
 import com.idiotic.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +25,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private MyInfoService myInfoService;
     @Autowired
     private JwtToken jwtToken;
 
@@ -44,6 +49,17 @@ public class UserController {
             return new Result(ResultCode.SUCCESS,data);
         }else{
             return new Result(ResultCode.NOTUSER);
+        }
+    }
+
+    @RequestMapping(value = "/get_info",method = RequestMethod.GET)
+    public Result getInfo(Integer info_id){
+        MyInfo data = myInfoService.findById(info_id);
+        System.out.println(data);
+        if (data == null){
+            return new Result(ResultCode.FAIL);
+        }else{
+            return new Result(ResultCode.SUCCESS,data);
         }
     }
 }
