@@ -55,7 +55,6 @@ public class UserController {
     @RequestMapping(value = "/get_info",method = RequestMethod.GET)
     public Result getInfo(Integer info_id){
         MyInfo data = myInfoService.findById(info_id);
-        System.out.println(data);
         if (data == null){
             return new Result(ResultCode.FAIL);
         }else{
