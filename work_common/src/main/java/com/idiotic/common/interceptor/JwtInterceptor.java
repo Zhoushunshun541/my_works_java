@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -32,15 +34,29 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
+        // 跨域问题
         response.setHeader("Access-control-Allow-Origin", request.getHeader("Origin"));
         response.setHeader("Access-Control-Allow-Methods", request.getMethod());
         response.setHeader("Access-Control-Allow-Headers", request.getHeader("Access-Control-Request-Headers"));
         response.setStatus(HttpStatus.OK.value());
+        // 获取token
         String token = request.getHeader("token");
         if (!StringUtils.isEmpty(token)){
+            //获取当时的信息
             Claims claims = jwtToken.parseToken(token);
             if (claims != null){
+//                // 获取用户id
+//                String user_id = claims.getId();
+//                // 获取用户 姓名
+//                String user_name = claims.getSubject();
+//                Object map = claims.get("map");
+//                // 通过handler
+                HandlerMethod h = (HandlerMethod) handler;
+                // 获取接口上的requestmapping注解
+                RequestMapping annotation = h.getMethodAnnotation(RequestMapping.class);
+                // 获取接口中请求的name属性
+                String name = annotation.name();
+                System.out.println("name======"+name);
                 return true;
             }
         }

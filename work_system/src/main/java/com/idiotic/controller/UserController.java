@@ -52,7 +52,8 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/get_info",method = RequestMethod.GET)
+    // RequestMapping中的name是在jwt的接口中获取的
+    @RequestMapping(value = "/get_info",method = RequestMethod.GET,name = "tset")
     public Result getInfo(Integer info_id){
         MyInfo data = myInfoService.findById(info_id);
         if (data == null){
