@@ -30,10 +30,18 @@ public class UserController {
         User user = userService.userLogin(username,password);
         if (user != null){
             Map<String,Object> userMap = new HashMap<>();
+            Map<String,Object> data = new HashMap<>();
             userMap.put("userData",user);
             String token = jwtToken.createToken(user.getId().toString(), user.getName(), userMap);
-            userMap.put("token",token);
-            return new Result(ResultCode.SUCCESS,userMap);
+            data.put("token",token);
+            data.put("username",user.getName());
+            data.put("email",user.getEmail());
+            data.put("mobile",user.getMobile());
+            data.put("info_id",user.getInfoId());
+            data.put("job",user.getJob());
+            data.put("company_name",user.getCompanyName());
+            data.put("company_id",user.getCompanyId());
+            return new Result(ResultCode.SUCCESS,data);
         }else{
             return new Result(ResultCode.NOTUSER);
         }

@@ -16,6 +16,10 @@ public class User {
     private Integer age;
     private String password;
     private String username;
+    private Integer infoId;
+    private String job;
+    private Integer companyId;
+    private String companyName;
 
     @Id
     @Column(name = "id")
@@ -117,5 +121,45 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Basic
+    @Column(name = "info_id")
+    public Integer getInfoId() {
+        return infoId;
+    }
+
+    public void setInfoId(Integer infoId) {
+        this.infoId = infoId;
+    }
+
+    @Basic
+    @Column(name = "job")
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    @Basic
+    @Column(name = "company_id")
+    public Integer getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Integer companyId) {
+        this.companyId = companyId;
+    }
+
+    @Basic
+    @Column(name = "company_name")
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 }
