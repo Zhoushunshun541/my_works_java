@@ -67,15 +67,15 @@
                 <filtering>true</filtering>      <!--动态配置-->
                 <excludes>       <!--去除多余的文件-->
                     <exclude>application.yml</exclude>
-                    <exclude>application_dev.yml</exclude>
-                    <exclude>application_prod.yml</exclude>
+                    <exclude>application-dev.yml</exclude>
+                    <exclude>application-prod.yml</exclude>
                 </excludes>
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>    <!--动态配置  ${env}-->
                 <includes>     <!--包含加载的文件（env  默认加载uat 具体看配置）-->
-                    <include>application_${env}.yml</include>
+                    <include>application-${env}.yml</include>
                     <include>application.yml</include>
                 </includes>
             </resource>
