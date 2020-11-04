@@ -13,6 +13,6 @@ public class MyInfoService {
     private MyInfoDao myInfoDao;
 
     public MyInfo findById(Integer id){
-        return myInfoDao.findById(id).get();
+        return myInfoDao.findByUserId(id);
     }
 }

@@ -33,6 +33,7 @@ public class UserController {
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public Result userLogin(String username,String password){
         User user = userService.userLogin(username,password);
+        System.out.println();
         if (user != null){
             Map<String,Object> userMap = new HashMap<>();
             Map<String,Object> data = new HashMap<>();
@@ -40,9 +41,9 @@ public class UserController {
             String token = jwtToken.createToken(user.getId().toString(), user.getName(), userMap);
             data.put("token",token);
             data.put("username",user.getName());
+            data.put("user_id",user.getId());
             data.put("email",user.getEmail());
             data.put("mobile",user.getMobile());
-            data.put("info_id",user.getInfoId());
             data.put("job",user.getJob());
             data.put("company_name",user.getCompanyName());
             data.put("company_id",user.getCompanyId());
@@ -52,9 +53,10 @@ public class UserController {
         }
     }
 
+    // RequestMapping中的name是在jwt的接口中获取的
     @RequestMapping(value = "/get_info",method = RequestMethod.GET)
-    public Result getInfo(Integer info_id){
-        MyInfo data = myInfoService.findById(info_id);
+    public Result getInfo(Integer user_id){
+        MyInfo data = myInfoService.findById(user_id);
         if (data == null){
             return new Result(ResultCode.FAIL);
         }else{
