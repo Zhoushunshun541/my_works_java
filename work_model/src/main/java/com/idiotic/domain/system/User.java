@@ -8,30 +8,26 @@ import java.util.Objects;
 
 @Entity
 public class User {
-    private Integer id;
+    private int id;
     private String name;
     private String mobile;
     private String sex;
     private String email;
     private Integer age;
+    private Integer infoId;
     private String password;
     private String username;
-    private Integer infoId;
     private String job;
     private Integer companyId;
     private String companyName;
 
     @Id
     @Column(name = "id")
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
     public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -85,22 +81,14 @@ public class User {
         this.age = age;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id == user.id &&
-                Objects.equals(name, user.name) &&
-                Objects.equals(mobile, user.mobile) &&
-                Objects.equals(sex, user.sex) &&
-                Objects.equals(email, user.email) &&
-                Objects.equals(age, user.age);
+    @Basic
+    @Column(name = "info_id")
+    public Integer getInfoId() {
+        return infoId;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, mobile, sex, email, age);
+    public void setInfoId(Integer infoId) {
+        this.infoId = infoId;
     }
 
     @Basic
@@ -121,16 +109,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    @Basic
-    @Column(name = "info_id")
-    public Integer getInfoId() {
-        return infoId;
-    }
-
-    public void setInfoId(Integer infoId) {
-        this.infoId = infoId;
     }
 
     @Basic
@@ -161,5 +139,29 @@ public class User {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(mobile, user.mobile) &&
+                Objects.equals(sex, user.sex) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(age, user.age) &&
+                Objects.equals(infoId, user.infoId) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(username, user.username) &&
+                Objects.equals(job, user.job) &&
+                Objects.equals(companyId, user.companyId) &&
+                Objects.equals(companyName, user.companyName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, mobile, sex, email, age, infoId, password, username, job, companyId, companyName);
     }
 }
