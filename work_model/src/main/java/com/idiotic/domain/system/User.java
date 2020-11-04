@@ -1,14 +1,11 @@
 package com.idiotic.domain.system;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 public class User {
-    private int id;
+    private Integer id;
     private String name;
     private String mobile;
     private String sex;
@@ -20,14 +17,15 @@ public class User {
     private String job;
     private Integer companyId;
     private String companyName;
+    private MyInfo myInfoByInfoId;
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -163,5 +161,15 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, mobile, sex, email, age, infoId, password, username, job, companyId, companyName);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "info_id", referencedColumnName = "id")
+    public MyInfo getMyInfoByInfoId() {
+        return myInfoByInfoId;
+    }
+
+    public void setMyInfoByInfoId(MyInfo myInfoByInfoId) {
+        this.myInfoByInfoId = myInfoByInfoId;
     }
 }

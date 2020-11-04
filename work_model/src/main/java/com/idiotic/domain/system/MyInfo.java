@@ -1,23 +1,25 @@
 package com.idiotic.domain.system;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 @Table(name = "my_info", schema = "my_works", catalog = "")
 public class MyInfo {
-    private int id;
+    private Integer id;
     private String skills;
     private String aboutMe;
     private String selfIntroduce;
+    private Collection<User> usersById;
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -65,5 +67,14 @@ public class MyInfo {
     @Override
     public int hashCode() {
         return Objects.hash(id, skills, aboutMe, selfIntroduce);
+    }
+
+    @OneToMany(mappedBy = "myInfoByInfoId")
+    public Collection<User> getUsersById() {
+        return usersById;
+    }
+
+    public void setUsersById(Collection<User> usersById) {
+        this.usersById = usersById;
     }
 }
