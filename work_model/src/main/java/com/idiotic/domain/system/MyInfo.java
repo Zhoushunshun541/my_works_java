@@ -1,9 +1,11 @@
 package com.idiotic.domain.system;
 
+import lombok.Data;
+
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Objects;
 
+@Data
 @Entity
 @Table(name = "my_info", schema = "my_works", catalog = "")
 public class MyInfo {
@@ -11,10 +13,11 @@ public class MyInfo {
     private String skills;
     private String aboutMe;
     private String selfIntroduce;
-    private Collection<User> usersById;
+    private Integer userId;
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -53,6 +56,16 @@ public class MyInfo {
         this.selfIntroduce = selfIntroduce;
     }
 
+    @Basic
+    @Column(name = "user_id")
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -61,20 +74,12 @@ public class MyInfo {
         return id == myInfo.id &&
                 Objects.equals(skills, myInfo.skills) &&
                 Objects.equals(aboutMe, myInfo.aboutMe) &&
-                Objects.equals(selfIntroduce, myInfo.selfIntroduce);
+                Objects.equals(selfIntroduce, myInfo.selfIntroduce) &&
+                Objects.equals(userId, myInfo.userId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, skills, aboutMe, selfIntroduce);
-    }
-
-    @OneToMany(mappedBy = "myInfoByInfoId")
-    public Collection<User> getUsersById() {
-        return usersById;
-    }
-
-    public void setUsersById(Collection<User> usersById) {
-        this.usersById = usersById;
+        return Objects.hash(id, skills, aboutMe, selfIntroduce, userId);
     }
 }

@@ -1,8 +1,11 @@
 package com.idiotic.domain.system;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Objects;
 
+@Data
 @Entity
 public class User {
     private Integer id;
@@ -11,16 +14,15 @@ public class User {
     private String sex;
     private String email;
     private Integer age;
-    private Integer infoId;
     private String password;
     private String username;
     private String job;
     private Integer companyId;
     private String companyName;
-    private MyInfo myInfoByInfoId;
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -77,16 +79,6 @@ public class User {
 
     public void setAge(Integer age) {
         this.age = age;
-    }
-
-    @Basic
-    @Column(name = "info_id")
-    public Integer getInfoId() {
-        return infoId;
-    }
-
-    public void setInfoId(Integer infoId) {
-        this.infoId = infoId;
     }
 
     @Basic
@@ -150,7 +142,6 @@ public class User {
                 Objects.equals(sex, user.sex) &&
                 Objects.equals(email, user.email) &&
                 Objects.equals(age, user.age) &&
-                Objects.equals(infoId, user.infoId) &&
                 Objects.equals(password, user.password) &&
                 Objects.equals(username, user.username) &&
                 Objects.equals(job, user.job) &&
@@ -160,16 +151,6 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, mobile, sex, email, age, infoId, password, username, job, companyId, companyName);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "info_id", referencedColumnName = "id")
-    public MyInfo getMyInfoByInfoId() {
-        return myInfoByInfoId;
-    }
-
-    public void setMyInfoByInfoId(MyInfo myInfoByInfoId) {
-        this.myInfoByInfoId = myInfoByInfoId;
+        return Objects.hash(id, name, mobile, sex, email, age, password, username, job, companyId, companyName);
     }
 }

@@ -56,7 +56,6 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
                 RequestMapping annotation = h.getMethodAnnotation(RequestMapping.class);
                 // 获取接口中请求的name属性
                 String name = annotation.name();
-                System.out.println("name======"+name);
                 return true;
             }
         }
