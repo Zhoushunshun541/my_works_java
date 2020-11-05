@@ -7,7 +7,7 @@ spring:
     name: work_sign_up
     #2.数据库连接池
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/my_works?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: Idiotic521541

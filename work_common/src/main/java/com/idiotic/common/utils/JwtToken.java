@@ -13,7 +13,6 @@ import java.util.Date;
 import java.util.Map;
 
 @Data
-@Component
 @ConfigurationProperties(prefix = "jwt.config")
 public class JwtToken {
 //    // 签名私钥
