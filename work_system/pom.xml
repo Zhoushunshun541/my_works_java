@@ -78,7 +78,6 @@
                 <includes>     <!--包含加载的文件（env  默认加载uat 具体看配置）-->
                     <!--suppress UnresolvedMavenProperty -->
                     <include>application-${env}.yml</include>
-                    <include>application.yml</include>
                 </includes>
             </resource>
         </resources>
