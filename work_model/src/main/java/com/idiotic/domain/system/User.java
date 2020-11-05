@@ -19,6 +19,9 @@ public class User {
     private String job;
     private Integer companyId;
     private String companyName;
+    private Long createTime;
+    private Long editTime;
+    private Long lastLogin;
 
     @Id
     @Column(name = "id")
@@ -151,5 +154,35 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, mobile, sex, email, age, password, username, job, companyId, companyName);
+    }
+
+    @Basic
+    @Column(name = "create_time")
+    public Long getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Long createTime) {
+        this.createTime = createTime;
+    }
+
+    @Basic
+    @Column(name = "edit_time")
+    public Long getEditTime() {
+        return editTime;
+    }
+
+    public void setEditTime(Long editTime) {
+        this.editTime = editTime;
+    }
+
+    @Basic
+    @Column(name = "last_login")
+    public Long getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(Long lastLogin) {
+        this.lastLogin = lastLogin;
     }
 }

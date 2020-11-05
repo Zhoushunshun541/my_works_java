@@ -21,8 +21,6 @@ public enum ResultCode {
     //---用户操作返回码  2xxxx----
     MOBILEORPASSWORDERROR(false,403,"用户名或密码错误"),
     NOTUSER(false,403,"查无此用户");
-
-
     //---用户操作返回码  3xxxx----
     //---权限操作返回码----
     //---其他操作返回码----

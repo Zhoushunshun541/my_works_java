@@ -3,9 +3,9 @@ server:
 spring:
   application:
     name: my_works
-  profiles:  #指定执行环境
-    active: @profiles.active@
-
+  profiles:
+    active: dev #指定执行环境
+#    active: @profiles.active@
 jwt:
   config:
     key: idiotic
