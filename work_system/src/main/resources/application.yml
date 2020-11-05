@@ -1,19 +1,11 @@
 server:
   port: 8060
 spring:
-#  main:
-#    allow-bean-definition-overriding: true
   application:
-    name: work_system
-    #2.数据库连接池
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://139.196.33.88:3306/my_works?useUnicode=true&characterEncoding=utf8&useSSL=false
-#    username: root
-#    password: 521541
-    url: jdbc:mysql://localhost:3306/my_works?useUnicode=true&characterEncoding=utf8&useSSL=false
-    username: root
-    password: Idiotic521541
+    name: my_works
+  profiles:  #指定执行环境
+    active: @profiles.active@
+
 jwt:
   config:
     key: idiotic
