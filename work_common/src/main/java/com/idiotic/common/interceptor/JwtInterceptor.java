@@ -1,8 +1,7 @@
 package com.idiotic.common.interceptor;
 
-import com.idiotic.common.expection.CommonExpection;
+import com.idiotic.common.expection.CommonException;
 import com.idiotic.common.utils.JwtToken;
-import com.idiotic.common.utils.Result;
 import com.idiotic.common.utils.ResultCode;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +58,7 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
                 return true;
             }
         }
-        return false;
+        throw new CommonException(ResultCode.UNAUTHORISE);
     }
 
     /**

@@ -45,4 +45,9 @@ public class UserService {
             setUserTime(user,type);
         }
     }
+
+    // 根据手机号查询是否已存在手机号
+    public User getUserByMob(String mobile){
+        return userDao.findByMobile(mobile);
+    }
 }

@@ -5,27 +5,29 @@ import lombok.Data;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Data
 public class UserDto {
-    private Integer id;
+    private long id;
     @NotEmpty(message="姓名不得为空")
     private String name;
     private String mobile;
     private String sex;
     @Email
     private String email;
-    private Integer age;
+    @NotNull(message = "生日日期不得为空")
+    private long age;
     @NotEmpty(message="密码不得为空")
     private String password;
     @NotEmpty(message="用户名不得为空")
     private String username;
     private String job;
-    private Integer companyId;
+    private long companyId;
     private String companyName;
-    private User user;
 
     public User getUser() {
+        User user = new User();
         user.setName(this.name);
         user.setMobile(this.mobile);
         user.setSex(this.sex);

@@ -16,10 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -34,9 +31,9 @@ public class UserController {
     @Autowired
     private UserService userService;
     @Autowired
-    private IdWorker idWorker;
-    @Autowired
     private MyInfoService myInfoService;
+    @Autowired
+    private IdWorker idWorker;
     @Autowired
     private JwtToken jwtToken;
 
@@ -58,7 +55,7 @@ public class UserController {
             Map<String,Object> userMap = new HashMap<>();
             Map<String,Object> data = new HashMap<>();
             userMap.put("userData",user);
-            String token = jwtToken.createToken(user.getId().toString(), user.getName(), userMap);
+            String token = jwtToken.createToken(Long.toString(user.getId()), user.getName(), userMap);
             data.put("token",token);
             data.put("username",user.getName());
             data.put("user_id",user.getId());
@@ -84,12 +81,20 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/add_user",method = RequestMethod.POST)
+    // 注册
+    @RequestMapping(value = "/registry",method = RequestMethod.POST)
+    @ResponseBody
     public Result addUser(@Validated UserDto userDto){
-        System.out.println(userDto);
         User user = userDto.getUser();
-        user.setCreateTime(timeStamp);
-        userService.addUser(user);
-        return new Result(ResultCode.SUCCESS);
+        User esitUser = userService.getUserByMob(user.getMobile());
+        if (esitUser == null){
+            user.setCreateTime(timeStamp);
+            user.setId(idWorker.nextId());
+            userService.addUser(user);
+            return new Result(ResultCode.SUCCESS);
+        }else{
+            return new Result(400,"手机号已存在",false);
+        }
+
     }
 }

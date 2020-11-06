@@ -1,23 +1,22 @@
 package com.idiotic.domain.system;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
 public class User {
-    private Integer id;
+
+    private long id;
     private String name;
     private String mobile;
     private String sex;
     private String email;
-    private Integer age;
+    private long age;
     private String password;
     private String username;
     private String job;
-    private Integer companyId;
+    private long companyId;
     private String companyName;
     private Long createTime;
     private Long editTime;
@@ -25,11 +24,11 @@ public class User {
 
     @Id
     @Column(name = "id")
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -75,11 +74,11 @@ public class User {
 
     @Basic
     @Column(name = "age")
-    public Integer getAge() {
+    public long getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(@NotNull(message = "生日日期不得为空") long age) {
         this.age = age;
     }
 
@@ -115,11 +114,11 @@ public class User {
 
     @Basic
     @Column(name = "company_id")
-    public Integer getCompanyId() {
+    public long getCompanyId() {
         return companyId;
     }
 
-    public void setCompanyId(Integer companyId) {
+    public void setCompanyId(long companyId) {
         this.companyId = companyId;
     }
 

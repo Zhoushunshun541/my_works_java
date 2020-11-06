@@ -6,11 +6,12 @@ import lombok.Getter;
  * 自定义异常
  */
 @Getter
-public class CommonExpection extends Exception  {
+public class CommonException extends Exception  {
 
     private ResultCode resultCode;
 
-    public CommonExpection(ResultCode resultCode) {
+    public CommonException(ResultCode resultCode) {
         this.resultCode = resultCode;
     }
 }
+

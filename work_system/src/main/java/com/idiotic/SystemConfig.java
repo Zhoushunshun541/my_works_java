@@ -19,7 +19,8 @@ public class SystemConfig extends WebMvcConfigurationSupport {
     protected void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(jwtInterceptor).
                 addPathPatterns("/**").//2.指定拦截器的url地址
-                excludePathPatterns("/sys/login");//3.指定不拦截的url地址
+                excludePathPatterns("/sys/login").
+                excludePathPatterns("/sys/registry");//3.指定不拦截的url地址
     }
 
     @Override

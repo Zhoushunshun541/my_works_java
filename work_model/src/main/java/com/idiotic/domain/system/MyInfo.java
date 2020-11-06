@@ -6,19 +6,19 @@ import java.util.Objects;
 @Entity
 @Table(name = "my_info", schema = "my_works", catalog = "")
 public class MyInfo {
-    private Integer id;
+    private long id;
     private String skills;
     private String aboutMe;
     private String selfIntroduce;
-    private Integer userId;
+    private long userId;
 
     @Id
     @Column(name = "id")
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -54,11 +54,11 @@ public class MyInfo {
 
     @Basic
     @Column(name = "user_id")
-    public Integer getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
