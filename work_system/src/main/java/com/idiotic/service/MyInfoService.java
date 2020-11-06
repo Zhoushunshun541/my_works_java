@@ -12,7 +12,7 @@ public class MyInfoService {
     @Autowired
     private MyInfoDao myInfoDao;
 
-    public MyInfo findById(Integer id){
+    public MyInfo findById(long id){
         return myInfoDao.findByUserId(id);
     }
 }

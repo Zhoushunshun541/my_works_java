@@ -72,10 +72,10 @@ public class UserController {
 
     // RequestMapping中的name是在jwt的接口中获取的
     @RequestMapping(value = "/get_info",method = RequestMethod.GET)
-    public Result getInfo(Integer user_id){
+    public Result getInfo(long user_id){
         MyInfo data = myInfoService.findById(user_id);
         if (data == null){
-            return new Result(ResultCode.FAIL);
+            return new Result(ResultCode.PERSONINFOEMPTY);
         }else{
             return new Result(ResultCode.SUCCESS,data);
         }
