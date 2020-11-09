@@ -34,7 +34,7 @@ public class CompanyController {
         Sort sort = Sort.by(Sort.Direction.DESC, "id");
         //创建一个Pageable对象
         Pageable pageable = PageRequest.of(searchDto.getPage() - 1, searchDto.getPageSize(), sort);
-        Page<Company> data = companyService.getAllCompany(pageable);
+        Page<Company> data = companyService.getAllCompany(pageable,searchDto.getSearch());
         PageResult<Company> pr = new PageResult(data.getTotalElements(),data.getContent());
         return new Result(ResultCode.SUCCESS,pr);
     }
