@@ -184,4 +184,24 @@ public class User {
     public void setLastLogin(Long lastLogin) {
         this.lastLogin = lastLogin;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", sex='" + sex + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", password='" + password + '\'' +
+                ", username='" + username + '\'' +
+                ", job='" + job + '\'' +
+                ", companyId=" + companyId +
+                ", companyName='" + companyName + '\'' +
+                ", createTime=" + createTime +
+                ", editTime=" + editTime +
+                ", lastLogin=" + lastLogin +
+                '}';
+    }
 }

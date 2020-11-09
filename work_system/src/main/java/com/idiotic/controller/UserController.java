@@ -95,6 +95,15 @@ public class UserController {
         }else{
             return new Result(400,"手机号已存在",false);
         }
+    }
 
+    @RequestMapping(value = "/edit_company",method = RequestMethod.POST)
+    public Result editCompany(long company_id,long user_id){
+        User user = userService.editCompany(company_id,user_id);
+        Map<String,String> map = new HashMap<>();
+        map.put("company_id",user.getCompanyId() + "");
+        map.put("company_name",user.getCompanyName());
+        map.put("user_id",user.getCompanyName());
+        return new Result(ResultCode.SUCCESS,map);
     }
 }
