@@ -59,6 +59,7 @@ public class UserController {
             data.put("token",token);
             data.put("username",user.getName());
             data.put("user_id",user.getId());
+            data.put("info_id",user.getInfoId());
             data.put("email",user.getEmail());
             data.put("mobile",user.getMobile());
             data.put("job",user.getJob());
@@ -72,8 +73,8 @@ public class UserController {
 
     // RequestMapping中的name是在jwt的接口中获取的
     @RequestMapping(value = "/get_info",method = RequestMethod.GET)
-    public Result getInfo(long user_id){
-        MyInfo data = myInfoService.findById(user_id);
+    public Result getInfo(long id){
+        MyInfo data = myInfoService.findById(id);
         if (data == null){
             return new Result(ResultCode.PERSONINFOEMPTY);
         }else{

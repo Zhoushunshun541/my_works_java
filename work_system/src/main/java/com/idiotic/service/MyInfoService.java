@@ -13,6 +13,10 @@ public class MyInfoService {
     private MyInfoDao myInfoDao;
 
     public MyInfo findById(long id){
-        return myInfoDao.findByUserId(id);
+        return myInfoDao.findById(id).get();
+    }
+
+    public void editInfo(MyInfo myInfo){
+        myInfoDao.save(myInfo);
     }
 }

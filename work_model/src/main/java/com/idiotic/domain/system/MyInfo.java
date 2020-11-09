@@ -1,16 +1,18 @@
 package com.idiotic.domain.system;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "my_info", schema = "my_works", catalog = "")
+@Data
+@Table(name = "my_info", schema = "my_works")
 public class MyInfo {
     private long id;
     private String skills;
     private String aboutMe;
     private String selfIntroduce;
-    private long userId;
 
     @Id
     @Column(name = "id")
@@ -52,16 +54,6 @@ public class MyInfo {
         this.selfIntroduce = selfIntroduce;
     }
 
-    @Basic
-    @Column(name = "user_id")
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,12 +62,11 @@ public class MyInfo {
         return Objects.equals(id, myInfo.id) &&
                 Objects.equals(skills, myInfo.skills) &&
                 Objects.equals(aboutMe, myInfo.aboutMe) &&
-                Objects.equals(selfIntroduce, myInfo.selfIntroduce) &&
-                Objects.equals(userId, myInfo.userId);
+                Objects.equals(selfIntroduce, myInfo.selfIntroduce);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, skills, aboutMe, selfIntroduce, userId);
+        return Objects.hash(id, skills, aboutMe, selfIntroduce);
     }
 }

@@ -1,9 +1,12 @@
 package com.idiotic.domain.system;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
+@Data
 @Entity
 public class User {
 
@@ -21,6 +24,7 @@ public class User {
     private Long createTime;
     private Long editTime;
     private Long lastLogin;
+    private long infoId;
 
     @Id
     @Column(name = "id")
@@ -185,23 +189,13 @@ public class User {
         this.lastLogin = lastLogin;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", sex='" + sex + '\'' +
-                ", email='" + email + '\'' +
-                ", age=" + age +
-                ", password='" + password + '\'' +
-                ", username='" + username + '\'' +
-                ", job='" + job + '\'' +
-                ", companyId=" + companyId +
-                ", companyName='" + companyName + '\'' +
-                ", createTime=" + createTime +
-                ", editTime=" + editTime +
-                ", lastLogin=" + lastLogin +
-                '}';
+    @Basic
+    @Column(name = "info_id")
+    public long getInfoId() {
+        return infoId;
+    }
+
+    public void setInfoId(long infoId) {
+        this.infoId = infoId;
     }
 }
