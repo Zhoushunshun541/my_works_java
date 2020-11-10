@@ -21,6 +21,7 @@ public class CompanyService {
             List<Company> list = companyDao.findAllData(search.trim(), pageable.getPageNumber() * pageable.getPageSize(), pageable.getPageSize());
             Long total = companyDao.getCount(search.trim());
             Page<Company> pageList = new PageImpl(list, pageable, total);
+            System.out.println("list======"+list.toString());
             return pageList;
         }
     }

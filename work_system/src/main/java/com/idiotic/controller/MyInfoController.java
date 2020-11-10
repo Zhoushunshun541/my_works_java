@@ -25,7 +25,6 @@ public class MyInfoController {
 
     @RequestMapping(value = "/edit_my_info",method = RequestMethod.POST)
     public Result editMyInfo(MyInfo myInfo){
-        System.out.println(myInfo.toString());
         myInfoService.editInfo(myInfo);
         return new Result(ResultCode.SUCCESS);
     }
