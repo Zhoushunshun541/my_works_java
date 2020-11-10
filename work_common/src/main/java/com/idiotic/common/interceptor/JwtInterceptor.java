@@ -4,6 +4,7 @@ import com.idiotic.common.expection.CommonException;
 import com.idiotic.common.utils.JwtToken;
 import com.idiotic.common.utils.ResultCode;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
 
 /**
@@ -40,9 +42,15 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
         response.setStatus(HttpStatus.OK.value());
         // 获取token
         String token = request.getHeader("token");
+        Claims claims;
+        // 过期或者啥的会直接抛异常  这里catch一下
         if (!StringUtils.isEmpty(token)){
             //获取当时的信息
-            Claims claims = jwtToken.parseToken(token);
+            try {
+                claims = jwtToken.parseToken(token);
+            }catch (ExpiredJwtException e){
+                claims = e.getClaims();
+            }
             if (claims != null){
 //                // 获取用户id
 //                String user_id = claims.getId();
@@ -55,7 +63,9 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
                 RequestMapping annotation = h.getMethodAnnotation(RequestMapping.class);
                 // 获取接口中请求的name属性
                 String name = annotation.name();
-                return true;
+                // 获取过期的时间 对比一下 是否过期
+                Date expiration = claims.getExpiration();
+                if (new Date(System.currentTimeMillis()).before(expiration)) return true;
             }
         }
         throw new CommonException(ResultCode.UNAUTHORISE);

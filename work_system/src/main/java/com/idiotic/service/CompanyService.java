@@ -14,13 +14,10 @@ public class CompanyService {
     private CompanyDao companyDao;
 
     public Page<Company> getAllCompany(Pageable pageable,String search){
-        
         if (search == null || search.trim() == ""){
-            System.out.println(1);
             Page<Company> list = companyDao.findAll(pageable);
             return list;
         }else{
-            System.out.println(2);
             List<Company> list = companyDao.findAllData(search.trim(), pageable.getPageNumber() * pageable.getPageSize(), pageable.getPageSize());
             Long total = companyDao.getCount(search.trim());
             Page<Company> pageList = new PageImpl(list, pageable, total);
