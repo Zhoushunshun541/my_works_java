@@ -18,9 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class MyInfoController {
 
     @Autowired
-    private IdWorker idWorker;
-
-    @Autowired
     private MyInfoService myInfoService;
 
     @RequestMapping(value = "/edit_my_info",method = RequestMethod.POST)

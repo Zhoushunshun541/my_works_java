@@ -27,7 +27,7 @@ public class UserService {
     // 新增
     public void addUser(User user){
         User res = userDao.save(user);
-        System.out.println(res);
+        System.out.println("s=="+res.toString());
     }
     // 设置时间
     public void setUserTime(User user,int type){

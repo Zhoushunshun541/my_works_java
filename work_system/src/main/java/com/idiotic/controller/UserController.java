@@ -33,8 +33,6 @@ public class UserController {
     @Autowired
     private MyInfoService myInfoService;
     @Autowired
-    private IdWorker idWorker;
-    @Autowired
     private JwtToken jwtToken;
 
     private Long timeStamp = new Date().getTime() / 1000;
@@ -90,7 +88,7 @@ public class UserController {
         User esitUser = userService.getUserByMob(user.getMobile());
         if (esitUser == null){
             user.setCreateTime(timeStamp);
-            user.setId(idWorker.nextId());
+            System.out.println(user.toString());
             userService.addUser(user);
             return new Result(ResultCode.SUCCESS);
         }else{

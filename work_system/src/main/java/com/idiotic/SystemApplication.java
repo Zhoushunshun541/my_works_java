@@ -18,10 +18,6 @@ public class SystemApplication {
         SpringApplication.run(SystemApplication.class);
     }
     @Bean
-    public IdWorker idWorker(){
-        return new IdWorker();
-    }
-    @Bean
     public JwtToken jwtToken(){
         return new JwtToken();
     }

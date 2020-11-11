@@ -162,10 +162,6 @@ public class IdWorker {
 
     public static void main(String[] args) {
         IdWorker idWorker = new IdWorker(31,31);
-        System.out.println("idWorker="+idWorker.nextId());
         IdWorker id = new IdWorker();
-        System.out.println("id="+id.nextId());
-        System.out.println(id.datacenterId);
-        System.out.println(id.workerId);
     }
 }
