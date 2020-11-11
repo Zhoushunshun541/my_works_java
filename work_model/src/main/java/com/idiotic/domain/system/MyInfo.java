@@ -10,6 +10,7 @@ import java.util.Objects;
 @Table(name = "my_info", schema = "my_works")
 public class MyInfo {
     private long id;
+    private long userId;
     private String skills;
     private String aboutMe;
     private String selfIntroduce;
@@ -46,6 +47,17 @@ public class MyInfo {
     }
 
     @Basic
+    @Column(name = "user_id")
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+
+    @Basic
     @Column(name = "self_introduce")
     public String getSelfIntroduce() {
         return selfIntroduce;
@@ -65,7 +77,6 @@ public class MyInfo {
                 Objects.equals(aboutMe, myInfo.aboutMe) &&
                 Objects.equals(selfIntroduce, myInfo.selfIntroduce);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(id, skills, aboutMe, selfIntroduce);

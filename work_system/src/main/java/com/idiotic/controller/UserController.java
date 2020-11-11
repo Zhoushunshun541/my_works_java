@@ -1,7 +1,6 @@
 package com.idiotic.controller;
 
 
-import com.idiotic.common.utils.IdWorker;
 import com.idiotic.common.utils.JwtToken;
 import com.idiotic.common.utils.Result;
 import com.idiotic.common.utils.ResultCode;
@@ -12,12 +11,12 @@ import com.idiotic.domain.system.dto.UserDto;
 import com.idiotic.service.MyInfoService;
 import com.idiotic.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -53,11 +52,10 @@ public class UserController {
             Map<String,Object> userMap = new HashMap<>();
             Map<String,Object> data = new HashMap<>();
             userMap.put("userData",user);
-            String token = jwtToken.createToken(Long.toString(user.getId()), user.getName(), userMap);
+            String token = jwtToken.createToken(user.getId()+"", user.getName(), userMap);
             data.put("token",token);
             data.put("username",user.getName());
             data.put("user_id",user.getId());
-            data.put("info_id",user.getInfoId());
             data.put("email",user.getEmail());
             data.put("mobile",user.getMobile());
             data.put("job",user.getJob());
@@ -71,10 +69,11 @@ public class UserController {
 
     // RequestMapping中的name是在jwt的接口中获取的
     @RequestMapping(value = "/get_info",method = RequestMethod.GET)
-    public Result getInfo(long id){
-        MyInfo data = myInfoService.findById(id);
+    public Result getInfo(HttpServletRequest request){
+        long userId = Long.parseLong((String) request.getAttribute("userId"));
+        MyInfo data = myInfoService.findById(userId);
         if (data == null){
-            return new Result(ResultCode.PERSONINFOEMPTY);
+            return new Result(ResultCode.EMPTYDATA);
         }else{
             return new Result(ResultCode.SUCCESS,data);
         }

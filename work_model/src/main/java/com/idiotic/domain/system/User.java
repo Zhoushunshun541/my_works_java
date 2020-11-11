@@ -24,8 +24,6 @@ public class User {
     private Long createTime;
     private Long editTime;
     private Long lastLogin;
-    private long infoId;
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -188,15 +186,5 @@ public class User {
 
     public void setLastLogin(Long lastLogin) {
         this.lastLogin = lastLogin;
-    }
-
-    @Basic
-    @Column(name = "info_id")
-    public long getInfoId() {
-        return infoId;
-    }
-
-    public void setInfoId(long infoId) {
-        this.infoId = infoId;
     }
 }

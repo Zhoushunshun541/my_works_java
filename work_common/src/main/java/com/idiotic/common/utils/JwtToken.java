@@ -33,9 +33,9 @@ public class JwtToken {
         // 设置失效时间
         Long now = System.currentTimeMillis(); //当前毫秒数
         Long exp = now + ttl;
-        JwtBuilder jwt = Jwts.builder().setId(id).setSubject(name).signWith(SignatureAlgorithm.HS256, key);
         //  根据map 创建claim
-        jwt.setClaims(map);
+        JwtBuilder jwt = Jwts.builder().setClaims(map).setId(id).setSubject(name).signWith(SignatureAlgorithm.HS256, key);
+
         jwt.setExpiration(new Date(exp));
         return jwt.compact();
     }

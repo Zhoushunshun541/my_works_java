@@ -12,8 +12,9 @@ public class MyInfoService {
     @Autowired
     private MyInfoDao myInfoDao;
 
-    public MyInfo findById(long id){
-        return myInfoDao.findById(id).get();
+    public MyInfo findById(Long id){
+        MyInfo data = myInfoDao.findByUserId(id);
+        return data;
     }
 
     public void editInfo(MyInfo myInfo){

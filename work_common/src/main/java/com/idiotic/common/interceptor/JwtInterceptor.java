@@ -52,10 +52,11 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
                 claims = e.getClaims();
             }
             if (claims != null){
-//                // 获取用户id
-//                String user_id = claims.getId();
-//                // 获取用户 姓名
-//                String user_name = claims.getSubject();
+                // 获取用户id
+                String userId = claims.getId();
+                request.setAttribute("userId",userId);
+                // 获取用户 姓名
+                String user_name = claims.getSubject();
 //                Object map = claims.get("map");
 //                // 通过handler
                 HandlerMethod h = (HandlerMethod) handler;

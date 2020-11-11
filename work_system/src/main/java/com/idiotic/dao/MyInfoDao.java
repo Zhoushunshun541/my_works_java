@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface MyInfoDao extends JpaRepository<MyInfo,Long>, JpaSpecificationExecutor<MyInfo> {
+    MyInfo findByUserId(Long id);
 }
