@@ -89,8 +89,8 @@ public class UserController {
         User user = userDto.getUser();
         User esitUser = userService.getUserByMob(user.getMobile());
         if (esitUser == null){
+            user.setPic("emptyPic.jpg");
             user.setCreateTime(timeStamp);
-            System.out.println(user.toString());
             userService.addUser(user);
             return new Result(ResultCode.SUCCESS);
         }else{
