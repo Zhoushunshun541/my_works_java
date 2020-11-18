@@ -1,29 +1,26 @@
 package com.idiotic.domain.system;
 
-import lombok.Data;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
-@Data
 @Entity
 public class User {
-
     private long id;
     private String name;
     private String mobile;
     private String sex;
     private String email;
-    private long age;
+    private Long age;
     private String password;
     private String username;
     private String job;
-    private long companyId;
+    private Long companyId;
     private String companyName;
     private Long createTime;
     private Long editTime;
     private Long lastLogin;
+    private String pic;
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -77,11 +74,11 @@ public class User {
 
     @Basic
     @Column(name = "age")
-    public long getAge() {
+    public Long getAge() {
         return age;
     }
 
-    public void setAge(@NotNull(message = "生日日期不得为空") long age) {
+    public void setAge(Long age) {
         this.age = age;
     }
 
@@ -117,11 +114,11 @@ public class User {
 
     @Basic
     @Column(name = "company_id")
-    public long getCompanyId() {
+    public Long getCompanyId() {
         return companyId;
     }
 
-    public void setCompanyId(long companyId) {
+    public void setCompanyId(Long companyId) {
         this.companyId = companyId;
     }
 
@@ -133,29 +130,6 @@ public class User {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) &&
-                Objects.equals(name, user.name) &&
-                Objects.equals(mobile, user.mobile) &&
-                Objects.equals(sex, user.sex) &&
-                Objects.equals(email, user.email) &&
-                Objects.equals(age, user.age) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(username, user.username) &&
-                Objects.equals(job, user.job) &&
-                Objects.equals(companyId, user.companyId) &&
-                Objects.equals(companyName, user.companyName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, mobile, sex, email, age, password, username, job, companyId, companyName);
     }
 
     @Basic
@@ -186,5 +160,42 @@ public class User {
 
     public void setLastLogin(Long lastLogin) {
         this.lastLogin = lastLogin;
+    }
+
+    @Basic
+    @Column(name = "pic")
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(mobile, user.mobile) &&
+                Objects.equals(sex, user.sex) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(age, user.age) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(username, user.username) &&
+                Objects.equals(job, user.job) &&
+                Objects.equals(companyId, user.companyId) &&
+                Objects.equals(companyName, user.companyName) &&
+                Objects.equals(createTime, user.createTime) &&
+                Objects.equals(editTime, user.editTime) &&
+                Objects.equals(lastLogin, user.lastLogin) &&
+                Objects.equals(pic, user.pic);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, mobile, sex, email, age, password, username, job, companyId, companyName, createTime, editTime, lastLogin, pic);
     }
 }

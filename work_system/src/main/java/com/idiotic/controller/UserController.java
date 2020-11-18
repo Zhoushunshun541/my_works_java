@@ -38,6 +38,7 @@ public class UserController {
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public Result userLogin(@Validated LoginDto loginDto, BindingResult bindingResult){
+        // 自定义校验的报错
         StringBuilder sb = new StringBuilder();
         if (bindingResult.hasErrors()){
             List<ObjectError> errors = bindingResult.getAllErrors();
@@ -54,7 +55,9 @@ public class UserController {
             userMap.put("userData",user);
             String token = jwtToken.createToken(user.getId()+"", user.getName(), userMap);
             data.put("token",token);
-            data.put("username",user.getName());
+            data.put("username",user.getUsername());
+            data.put("pic",user.getPic());
+            data.put("name",user.getName());
             data.put("user_id",user.getId());
             data.put("email",user.getEmail());
             data.put("mobile",user.getMobile());
@@ -106,12 +109,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "/edit_user_info",method = RequestMethod.POST)
-    public Result editCompany(Long user_id,String mobile,String job,String email,String username){
+    public Result editCompany(Long user_id,String mobile,String job,String email,String name){
         User user = userService.findByUserId(user_id);
         user.setMobile(mobile);
         user.setJob(job);
         user.setEmail(email);
-        user.setUsername(username);
+        user.setName(name);
         userService.addUser(user);
         return new Result(ResultCode.SUCCESS);
     }
