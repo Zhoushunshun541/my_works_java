@@ -3,6 +3,7 @@ package com.idiotic;
 
 import com.idiotic.common.utils.IdWorker;
 import com.idiotic.common.utils.JwtToken;
+import com.idiotic.common.utils.QiniuUpload;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -20,6 +21,11 @@ public class SystemApplication {
     @Bean
     public JwtToken jwtToken(){
         return new JwtToken();
+    }
+
+    @Bean
+    public QiniuUpload qiniuUpload(){
+        return new QiniuUpload();
     }
     //  解决no session
     @Bean

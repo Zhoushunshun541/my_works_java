@@ -109,12 +109,13 @@ public class UserController {
     }
 
     @RequestMapping(value = "/edit_user_info",method = RequestMethod.POST)
-    public Result editCompany(Long user_id,String mobile,String job,String email,String name){
+    public Result editCompany(Long user_id,String mobile,String job,String email,String name,String pic){
         User user = userService.findByUserId(user_id);
         user.setMobile(mobile);
         user.setJob(job);
         user.setEmail(email);
         user.setName(name);
+        user.setPic(pic);
         userService.addUser(user);
         return new Result(ResultCode.SUCCESS);
     }
