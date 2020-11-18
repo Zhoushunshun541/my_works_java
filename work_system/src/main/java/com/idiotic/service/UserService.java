@@ -26,8 +26,11 @@ public class UserService {
     }
     // 新增
     public void addUser(User user){
+        User isExit = userDao.findById(user.getId()).get();
+        if (isExit != null){
+            setUserTime(user,1);
+        }
         User res = userDao.save(user);
-        System.out.println("s=="+res.toString());
     }
     // 设置时间
     public void setUserTime(User user,int type){
@@ -62,5 +65,9 @@ public class UserService {
             user.setCompanyName(company.getCompanyName());
             user.setCompanyId(company.getId());
             return userDao.saveAndFlush(user);
+    }
+
+    public User findByUserId(long userId){
+        return userDao.findById(userId).get();
     }
 }

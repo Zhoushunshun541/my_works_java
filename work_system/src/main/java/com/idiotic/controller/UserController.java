@@ -104,4 +104,15 @@ public class UserController {
         map.put("user_id",user.getCompanyName());
         return new Result(ResultCode.SUCCESS,map);
     }
+
+    @RequestMapping(value = "/edit_user_info",method = RequestMethod.POST)
+    public Result editCompany(Long user_id,String mobile,String job,String email,String username){
+        User user = userService.findByUserId(user_id);
+        user.setMobile(mobile);
+        user.setJob(job);
+        user.setEmail(email);
+        user.setUsername(username);
+        userService.addUser(user);
+        return new Result(ResultCode.SUCCESS);
+    }
 }
