@@ -32,6 +32,10 @@ public class UserService {
         }
         User res = userDao.save(user);
     }
+    // 注册
+    public void registry(User user){
+        User res = userDao.save(user);
+    }
     // 设置时间
     public void setUserTime(User user,int type){
         switch (type){

@@ -91,7 +91,7 @@ public class UserController {
         if (esitUser == null){
             user.setPic("emptyPic.jpg");
             user.setCreateTime(timeStamp);
-            userService.addUser(user);
+            userService.registry(user);
             return new Result(ResultCode.SUCCESS);
         }else{
             return new Result(400,"手机号已存在",false);
