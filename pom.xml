@@ -12,13 +12,14 @@
         <module>work_common</module>
         <module>work_model</module>
         <module>work_system</module>
+        <module>work_eureka</module>
     </modules>
     <name>works</name>
     <description>周顺顺跟学做系统</description>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.4.RELEASE</version>
+        <version>2.2.6.RELEASE</version>
         <relativePath/>
     </parent>
     <properties>
@@ -28,7 +29,15 @@
         <fastjson.version>1.2.62</fastjson.version>
         <mysql.version>8.0.17</mysql.version>
     </properties>
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Finchley.SR2</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>mysql</groupId>

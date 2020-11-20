@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="work_model" />
         <module name="work_system" />
+        <module name="work_eureka" />
         <module name="work_common" />
       </profile>
     </annotationProcessing>
@@ -15,6 +16,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="work_common" options="-parameters" />
+      <module name="work_eureka" options="-parameters" />
       <module name="work_model" options="-parameters" />
       <module name="work_system" options="-parameters" />
     </option>
