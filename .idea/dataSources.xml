@@ -13,5 +13,11 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/my_works</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="微信数据库" uuid="e2566305-d9df-4d35-b6d3-1a8464d89526">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/wx_blog</jdbc-url>
+    </data-source>
   </component>
 </project>
