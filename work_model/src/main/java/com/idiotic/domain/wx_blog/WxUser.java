@@ -7,32 +7,33 @@ import java.util.Objects;
 
 @Data
 @Entity
-@IdClass(wXUserPK.class)
+@Table(name = "user", schema = "wx_blog", catalog = "")
 public class WxUser {
-    private int id;
-    private int openId;
+    private long id;
+    private String openId;
     private String name;
     private String sex;
     private String mobile;
-    private Integer age;
+    private String avatarUrl;
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    @Id
+    @Basic
     @Column(name = "openId")
-    public int getOpenId() {
+    public String getOpenId() {
         return openId;
     }
 
-    public void setOpenId(int openId) {
+    public void setOpenId(String openId) {
         this.openId = openId;
     }
 
@@ -66,31 +67,30 @@ public class WxUser {
         this.mobile = mobile;
     }
 
-    @Basic
-    @Column(name = "age")
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         WxUser wxUser = (WxUser) o;
         return id == wxUser.id &&
-                openId == wxUser.openId &&
+                Objects.equals(openId, wxUser.openId) &&
                 Objects.equals(name, wxUser.name) &&
                 Objects.equals(sex, wxUser.sex) &&
-                Objects.equals(mobile, wxUser.mobile) &&
-                Objects.equals(age, wxUser.age);
+                Objects.equals(mobile, wxUser.mobile);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, openId, name, sex, mobile, age);
+        return Objects.hash(id, openId, name, sex, mobile);
+    }
+
+    @Basic
+    @Column(name = "avatarUrl")
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }

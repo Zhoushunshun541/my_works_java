@@ -1,6 +1,6 @@
 
 spring:
-    #2.数据库连接池
+  #2.数据库连接池
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/wx_blog?useUnicode=true&characterEncoding=utf8&useSSL=false

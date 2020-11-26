@@ -8,9 +8,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="work_model" />
         <module name="work_system" />
-        <module name="work_wxBlog" />
-        <module name="work_eureka" />
         <module name="work_common" />
+        <module name="work_eureka" />
+        <module name="work_wxBlog" />
       </profile>
     </annotationProcessing>
   </component>
