@@ -1,0 +1,22 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6868/eureka/
+server:
+  port: 8060
+spring:
+  application:
+    name: work_system
+  profiles:
+    active: prod #指定执行环境
+#    active: @profiles.active@
+jwt:
+  config:
+    key: idiotic
+    ttl: 36000000
+
+qiniu:
+  config:
+    accessKey: NppjS9NHakezcuPyheCzM3spTe9dtZkyjNMM1zXI
+    secretKey: BmP_n1Xj8HrBJzeNaM5cbhyhzkLVFpinOL5oGp6p
+    bucket: idiotic
