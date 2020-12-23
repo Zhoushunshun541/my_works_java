@@ -48,6 +48,9 @@ public class UserController {
             return new Result(400,sb.toString(),false);
         }
         User user = userService.userLogin(loginDto.getUsername(),loginDto.getPassword());
+        if (user == null){
+            return new Result(ResultCode.NOTUSER);
+        }
         userService.setUserTime(user,2);
         if (user != null){
             Map<String,Object> userMap = new HashMap<>();
