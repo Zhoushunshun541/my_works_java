@@ -104,7 +104,7 @@ public class UserController {
 
     @RequestMapping(value = "/edit_company",method = RequestMethod.POST)
     public Result editCompany(long company_id,long user_id){
-        // 大于0说明是编辑了
+        // 大于0说明是编辑了 否则是没有更改
         if (company_id > 0){
             User user = userService.editCompany(company_id,user_id);
             Map<String,String> map = new HashMap<>();
