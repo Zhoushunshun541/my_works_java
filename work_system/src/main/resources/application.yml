@@ -8,8 +8,7 @@ spring:
   application:
     name: work_system
   profiles:
-    active: prod #指定执行环境
-#    active: @profiles.active@
+    active: prod
 jwt:
   config:
     key: idiotic
