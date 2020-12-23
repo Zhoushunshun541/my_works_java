@@ -94,6 +94,7 @@ public class UserController {
         if (esitUser == null){
             user.setPic("emptyPic.jpg");
             user.setCreateTime(timeStamp);
+            System.out.println(user.toString());
             userService.registry(user);
             return new Result(ResultCode.SUCCESS);
         }else{
@@ -103,12 +104,18 @@ public class UserController {
 
     @RequestMapping(value = "/edit_company",method = RequestMethod.POST)
     public Result editCompany(long company_id,long user_id){
-        User user = userService.editCompany(company_id,user_id);
-        Map<String,String> map = new HashMap<>();
-        map.put("company_id",user.getCompanyId() + "");
-        map.put("company_name",user.getCompanyName());
-        map.put("user_id",user.getCompanyName());
-        return new Result(ResultCode.SUCCESS,map);
+        // 大于0说明是编辑了
+        if (company_id > 0){
+            User user = userService.editCompany(company_id,user_id);
+            Map<String,String> map = new HashMap<>();
+            map.put("company_id",user.getCompanyId() + "");
+            map.put("company_name",user.getCompanyName());
+            map.put("user_id",user.getCompanyName());
+            return new Result(ResultCode.SUCCESS,map);
+        }else{
+            return new Result(ResultCode.EMPTYDATA);
+        }
+
     }
 
     @RequestMapping(value = "/edit_user_info",method = RequestMethod.POST)

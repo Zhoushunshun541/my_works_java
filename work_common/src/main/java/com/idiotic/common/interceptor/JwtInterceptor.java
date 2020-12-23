@@ -65,8 +65,14 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
                 // 获取接口中请求的name属性
                 String name = annotation.name();
                 // 获取过期的时间 对比一下 是否过期
+                System.out.println(claims.toString());
                 Date expiration = claims.getExpiration();
-                if (new Date(System.currentTimeMillis()).before(expiration)) return true;
+                System.out.println(expiration);
+                if (new Date(System.currentTimeMillis()).before(expiration)) {
+                    return true;
+                }else{
+                    throw new CommonException(ResultCode.LOGINOUTDATE);
+                }
             }
         }
         throw new CommonException(ResultCode.UNAUTHORISE);

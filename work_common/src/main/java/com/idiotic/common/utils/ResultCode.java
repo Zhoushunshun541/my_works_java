@@ -15,6 +15,7 @@ public enum ResultCode {
     //---系统错误返回码-----
     FAIL(false,400,"操作失败"),
     UNAUTHENTICATED(false,401,"您还未登录"),
+    LOGINOUTDATE(false,401,"登录过期"),
     UNAUTHORISE(false,403,"权限不足"),
     SERVER_ERROR(false,500,"抱歉，系统繁忙，请稍后重试！"),
 
